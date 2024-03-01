@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: curl-post-pod
+spec:
+  containers:
+  - name: curl
+    image: curlimages/curl:latest
+    command: ["sh", "-c", "curl -X POST -H 'Content-Type: application/json' -d '{\"key\": \"test_key\", \"value\": \"test_value\"}' http://10.105.182.155:32359/add/"]

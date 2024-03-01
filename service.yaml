@@ -1,0 +1,18 @@
+# Service of fast - api
+apiVersion: v1
+kind: Service
+metadata:
+  name: fast-api-service
+spec:
+  selector:
+    app: fast-api
+  ports:
+    - name: http-app
+      protocol: TCP
+      port: 4700
+      targetPort: 4700
+    - name: http-redish
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+  type: NodePort

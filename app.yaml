@@ -1,0 +1,15 @@
+# FAST API
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fast-api
+spec:
+  containers:
+  - name: container-fast-api
+    image: cristiank/ds3:latest
+    ports:
+    - containerPort: 4700
+  - name: container-redis
+    image: redis:latest
+    ports:
+    - containerPort: 6379
