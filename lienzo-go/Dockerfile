@@ -3,10 +3,10 @@ FROM golang:1.19.8
 
 WORKDIR /server_go
 
-COPY ms-products/go.mod ms-products/go.sum ./
+COPY lienzo-go/go.mod lienzo-go/go.sum ./
 RUN go mod download
 
-COPY ms-products/ .
+COPY lienzo-go/ .
 
 RUN go build -o server ./src/main.go
 

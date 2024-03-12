@@ -60,7 +60,7 @@ func Connect(wg *sync.WaitGroup) {
 			}
 
 			if err != nil {
-				log.Fatal(err, "DImelo")
+				log.Fatal(err)
 			}
 
 			fmt.Println("Conexión exitosa a la base de datos PostgreSQL")

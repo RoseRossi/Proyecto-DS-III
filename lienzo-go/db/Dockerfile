@@ -7,4 +7,4 @@ ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
 
 # Init database
-COPY ms-user/db/default/sql.sql /docker-entrypoint-initdb.d/
+COPY lienzo-go/db/default/sql.sql /docker-entrypoint-initdb.d/

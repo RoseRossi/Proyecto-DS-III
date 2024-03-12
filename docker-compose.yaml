@@ -3,3 +3,77 @@
 # @copyrigth: 2024
 # @license: GPL-3.0
 #
+
+version: '3.8'
+
+services:
+  # Kafka Server
+  kafka_server:
+    build:
+      context: .
+      dockerfile: kafka-server/Dockerfile.compose
+    ports:
+      - "9092:9092"
+
+  # Microservice ms_user
+  ms_user_server:
+    build:
+      context: .
+      dockerfile: ms-user/Dockerfile
+    ports:
+      - "4700:4700"
+    environment:
+      DB_HOST: ms_user_db
+      DB_PORT: 5432
+      DB_NAME: server_go
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - ms_user_db
+
+  # Database ms_user_server
+  ms_user_db:
+    build:
+      context: .
+      dockerfile: ms-user/db/Dockerfile
+    environment:
+      POSTGRES_DB: server_go
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ms_user_db_data:/var/lib/postgresql/data
+
+  # Microservice ms_products
+  ms_products_server:
+    build:
+      context: .
+      dockerfile: ms-products/Dockerfile
+    ports:
+      - "4701:4700"
+    environment:
+      DB_HOST: ms_products_db
+      DB_PORT: 5432
+      DB_NAME: server_go
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      - ms_products_db
+
+  # Database ms_user_server
+  ms_products_db:
+    build:
+      context: .
+      dockerfile: ms-products/db/Dockerfile
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: server_go
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ms_products_db_data:/var/lib/postgresql/data
+
+# Persistence
+volumes:
+  ms_user_db_data:
+  ms_products_db_data:

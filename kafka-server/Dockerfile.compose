@@ -12,8 +12,8 @@ WORKDIR /kafka
 RUN mkdir -p /kafka/config
 
 # Copy configurations
-COPY kafka/conf/server.properties /kafka/config/server.properties
-COPY kafka/conf/consumer.properties /kafka/config/consumer.properties
+COPY kafka-server/conf/server.properties /kafka/config/server.properties
+COPY kafka-server/conf/consumer.properties /kafka/config/consumer.properties
 
 # Generate SSL certificates
 RUN keytool -genkeypair -keyalg RSA -alias kafka-ssl -keystore /kafka/config/keystore.jks -storepass keystore_password -keypass key_password -validity 365 -keysize 2048 -dname "CN=localhost" -ext SAN=dns:localhost
