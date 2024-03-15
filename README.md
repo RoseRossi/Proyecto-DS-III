@@ -21,3 +21,4 @@ Isabela Rosero - 2128720 <br>
 Stefhania Noguera - 2125854 <br>
 Paula Giraldo - 2022411 <br>
 Brayan Sanchez - 2043554 <br>
+Juan Esteban Brand - 2043291 <br>
