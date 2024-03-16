@@ -3,10 +3,10 @@ FROM golang:1.19.8
 
 WORKDIR /server_go
 
-COPY ms-products/go.mod ms-products/go.sum ./
+COPY go.mod go.sum ./
 RUN go mod download
 
-COPY ms-products/ .
+COPY . .
 
 RUN go build -o server ./src/main.go
 

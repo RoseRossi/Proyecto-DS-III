@@ -7,11 +7,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redWheelsMs
+  name: microservices
   labels:
     app: redWheels
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: redWheels
@@ -21,23 +21,23 @@ spec:
         app: redWheels
     spec:
       containers:
-      - name:  redWheels-ms-user-server
-        image: cristiank/ms_user_server:latest
-        ports:
-        - containerPort: 4700
-        env:
-        - name: DB_HOST
-          value: ""
-        - name: DB_PORT
-          value: ""
-        - name: DB_NAME
-          value: ""
-        - name: DB_USER
-          value: ""
-        - name: DB_PASSWORD
-          value: ""
-          
-      - name:  redWheels-ms-user-db
-        image: cristiank/ms_user_db:latest
-        ports:
-        - containerPort: 5432
+        # Ms User db
+        - name: ms-user-db
+          image: postgres:15.5
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          volumeMounts:
+            - name: user-db-vm
+              mountPath: /docker-entrypoint-initdb.d
+
+      # Volumes
+      volumes:
+        - name: user-db-vm
+          hostPath:
+            path: /app/db/ms-user/
+            type: Directory
