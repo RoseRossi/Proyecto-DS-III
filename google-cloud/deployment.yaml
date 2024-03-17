@@ -2,7 +2,7 @@
 # @autor: Cristian Machado <cristian.machado@correounivalle.edu.co>
 # @copyrigth: 2024
 # @license: GPL-3.0
-# TODO: Falta investigar como hacer la parte de los volumenes en kubernetes y el puerto del servicio
+#
 
 apiVersion: apps/v1
 kind: Deployment
@@ -11,7 +11,7 @@ metadata:
   labels:
     app: redWheels
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: redWheels
@@ -21,6 +21,11 @@ spec:
         app: redWheels
     spec:
       containers:
+        # Kafka
+        - name: kafka-server
+          image: cristiank/kafka
+          ports:
+            - containerPort: 9092
         # Ms User db
         - name: ms-user-db
           image: postgres:15.5
@@ -34,6 +39,22 @@ spec:
           volumeMounts:
             - name: user-db-vm
               mountPath: /docker-entrypoint-initdb.d
+        # Ms User Server
+        - name: ms-user-server
+          image: cristiank/ms-user
+          ports:
+            - containerPort: 4700
+          env:
+            - name: DB_HOST
+              value: microservices-service
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: server_go
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
 
       # Volumes
       volumes:
