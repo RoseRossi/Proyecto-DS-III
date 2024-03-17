@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS account_roles (
 
 CREATE TABLE IF NOT EXISTS info_personal (
     id BIGINT PRIMARY KEY DEFAULT nextval('info_personal_id_seq'),
-    id_account BIGINT,
+    id_account BIGINT UNIQUE,
     id_rol BIGINT,
     nombre VARCHAR(90) NOT NULL,
     created_at TIMESTAMP NULL DEFAULT NOW(),

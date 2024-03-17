@@ -23,3 +23,11 @@ spec:
       protocol: TCP
       port: 4700
       targetPort: 4700
+    - name: server-port-products
+      protocol: TCP
+      port: 4701
+      targetPort: 4701
+    - name: db-port-products
+      protocol: TCP
+      port: 5433
+      targetPort: 5432
