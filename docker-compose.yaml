@@ -18,8 +18,8 @@ services:
   # Microservice ms_user
   ms_user_server:
     build:
-      context: .
-      dockerfile: ms-user/Dockerfile
+      context: ms-user
+      dockerfile: Dockerfile
     ports:
       - "4700:4700"
     environment:
@@ -34,8 +34,8 @@ services:
   # Database ms_user_server
   ms_user_db:
     build:
-      context: .
-      dockerfile: ms-user/db/Dockerfile
+      context: ms-user
+      dockerfile: db/Dockerfile
     environment:
       POSTGRES_DB: server_go
       POSTGRES_USER: postgres
@@ -46,8 +46,8 @@ services:
   # Microservice ms_products
   ms_products_server:
     build:
-      context: .
-      dockerfile: ms-products/Dockerfile
+      context: ms-products
+      dockerfile: Dockerfile
     ports:
       - "4701:4700"
     environment:
@@ -62,8 +62,8 @@ services:
   # Database ms_user_server
   ms_products_db:
     build:
-      context: .
-      dockerfile: ms-products/db/Dockerfile
+      context: ms-products
+      dockerfile: db/Dockerfile
     ports:
       - "5433:5432"
     environment:

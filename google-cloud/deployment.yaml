@@ -2,12 +2,12 @@
 # @autor: Cristian Machado <cristian.machado@correounivalle.edu.co>
 # @copyrigth: 2024
 # @license: GPL-3.0
-# TODO: Falta investigar como hacer la parte de los volumenes en kubernetes y el puerto del servicio
+#
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redWheelsMs
+  name: microservices
   labels:
     app: redWheels
 spec:
@@ -21,23 +21,76 @@ spec:
         app: redWheels
     spec:
       containers:
-      - name:  redWheels-ms-user-server
-        image: cristiank/ms_user_server:latest
-        ports:
-        - containerPort: 4700
-        env:
-        - name: DB_HOST
-          value: ""
-        - name: DB_PORT
-          value: ""
-        - name: DB_NAME
-          value: ""
-        - name: DB_USER
-          value: ""
-        - name: DB_PASSWORD
-          value: ""
-          
-      - name:  redWheels-ms-user-db
-        image: cristiank/ms_user_db:latest
-        ports:
-        - containerPort: 5432
+        # Kafka
+        - name: kafka-server
+          image: cristiank/kafka
+          ports:
+            - containerPort: 9092
+        # Ms User db
+        - name: ms-user-db
+          image: postgres:15.5
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          volumeMounts:
+            - name: user-db-vm
+              mountPath: /docker-entrypoint-initdb.d
+        # Ms User Server
+        - name: ms-user-server
+          image: cristiank/ms-user
+          ports:
+            - containerPort: 4700
+          env:
+            - name: DB_HOST
+              value: microservices-service
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: server_go
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
+        # Ms Products db
+        - name: ms-products-db
+          image: postgres:15.5
+          ports:
+            - containerPort: 5433
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+          volumeMounts:
+            - name: ms-products-vm
+              mountPath: /docker-entrypoint-initdb.d
+        # Ms Products Server
+        - name: ms-products-server
+          image: cristiank/ms-products
+          ports:
+            - containerPort: 4701
+          env:
+            - name: DB_HOST
+              value: microservices-service
+            - name: DB_PORT
+              value: "5433"
+            - name: DB_NAME
+              value: server_go
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
+      # Volumes
+      volumes:
+        - name: user-db-vm
+          hostPath:
+            path: /app/db/ms-user/
+            type: Directory
+        - name: ms-products-vm
+          hostPath:
+            path: /app/db/ms-products/
+            type: Directory
