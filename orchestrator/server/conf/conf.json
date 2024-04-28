@@ -1,0 +1,5 @@
+{
+    "ms-product": {
+        "get": "http://localhost:4700/api/my-server-go/get-data"
+    }
+}
