@@ -25,3 +25,10 @@ var (
 func GetData(c *gin.Context) {
 	allowedIPCases.BodyGetData(instanceDefault, c)
 }
+
+/**
+ * Return List products
+*/
+func ListProducts(c *gin.Context) {
+	allowedIPCases.BodyGetData(instanceDefault, c)
+}
