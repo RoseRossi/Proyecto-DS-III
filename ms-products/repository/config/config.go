@@ -14,5 +14,8 @@ func ConfigMapSql() map[string]string {
 	return map[string]string{
 		"default_routes": "all_routes",
 		"get_allowed_ips": "allowed_ips",
+		"create_product": "create_product",
+		"list_product": "list_products",
+		"update_product": "update_product",
 	}
 }

@@ -19,6 +19,7 @@ func InitializeRoutes(router HttpRouter, allRoutes []map[string]interface{}) {
 		for _, r := range allRoutes {
 			// Data
 			router.POST(fmt.Sprintf("%s/get-data", r["route_"]), HandleSync(handler.GetData))
+			router.POST(fmt.Sprintf("%s/list-products"), HandleSync(handler.ListProducts))
 		}
 	}
 }

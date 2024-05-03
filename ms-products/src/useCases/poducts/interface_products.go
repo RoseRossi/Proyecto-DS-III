@@ -5,20 +5,20 @@
  * @license: GPL-3.0
 */
 
-package allowedIPCases
+package products
 
 import (
 	"github.com/gin-gonic/gin"	
 )
 
 /**  Interface */
-type InterfaceDefaultUseCases interface {
-	BodyGetData(c *gin.Context)
+type InterfaceProductsUseCases interface {
+	BodyListData(c *gin.Context)
 }
 
 /**
 	Method of interface
 */
-func BodyGetData(p InterfaceDefaultUseCases , c *gin.Context) {
-	p.BodyGetData(c)
+func BodyListData(p InterfaceProductsUseCases , c *gin.Context) {
+	p.BodyListData(c)
 }
