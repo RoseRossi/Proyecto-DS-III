@@ -5,7 +5,7 @@
  * @license: GPL-3.0
 */
 
-package products
+package poductsControl
 
 import (
 	"github.com/gin-gonic/gin"	

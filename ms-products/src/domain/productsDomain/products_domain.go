@@ -9,6 +9,7 @@ package productsDomain
 
 import (
 	"server_go/repository/services/servicesProducts"
+	"server_go/src/domain/utils"
 	"fmt"
 )
 
@@ -16,15 +17,17 @@ var (
 	instance = servicesProducts.ServicesProducts{}
 )
 
-type ProductsDomainPStruct struct {}
+type ProductsDomainStruct struct {}
 
 /**
   * Return all allowed ips
 */
-func (p ProductsDomainPStruct) DomlistProducts(args *map[string]interface{}, body *map[string]interface{}) {
+func (p ProductsDomainStruct) DomCreateProducts(args *map[string]interface{}, body *map[string]interface{}) {
+	bodyParse_ := utils.ConvertDataToArrayInterface_(*body)
+	fmt.Println()
 	if len(*args) > 0 {
 		// Todo: In method save param type of interface{} and here send  *map[string]interface{}
-		_response, is_error := servicesProducts.ListServicesProducts(instance,*body...)
+		_response, is_error := servicesProducts.ListServicesProducts(instance,bodyParse_)
 		
 		if is_error == nil {
 			(*args)["data"] = _response;

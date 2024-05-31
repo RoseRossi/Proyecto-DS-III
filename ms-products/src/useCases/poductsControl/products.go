@@ -5,7 +5,7 @@
  * @license: GPL-3.0
 */
 
-package products
+package poductsControl
 
 import (
 	"server_go/src/domain/utils"
@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	instanceDom = productsDomain.ProductsDomainPStruct{}
+	instanceDom = productsDomain.ProductsDomainStruct{}
 	instanceBody = httpControl.HttpRequestControl{}
 )
 
@@ -29,6 +29,6 @@ func (p UseCasesProducts) BodyListData(c *gin.Context) {
 	requestParamns := utils.StateDefaultReq()
 	instanceBody.BodyRequest = c
 	bodyData := httpControl.GetBodyRequest(instanceBody)
-	productsDomain.DomlistProducts(instanceDom,&requestParamns,&bodyData)
+	productsDomain.DomCreateProducts(instanceDom,&requestParamns,&bodyData)
 	utils.ResponseControlGeneral(c, requestParamns)
 }

@@ -10,7 +10,7 @@ package defaultControl
 // Librerary import
 import (
 	"server_go/src/useCases/allowedIPCases"
-	"server_go/src/useCases/poducts"
+	"server_go/src/useCases/poductsControl"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +18,7 @@ import (
 // Vars
 var (
 	instanceDefault = allowedIPCases.UseCasesallowedIP{}
+	instanceProduct = poductsControl.UseCasesProducts{}
 )
 
 /**
@@ -31,5 +32,5 @@ func GetData(c *gin.Context) {
  * Return List products
 */
 func ListProducts(c *gin.Context) {
-	poducts.BodyListData(instanceDefault, c)
+	poductsControl.BodyListData(instanceProduct, c)
 }
