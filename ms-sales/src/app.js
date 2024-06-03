@@ -4,15 +4,17 @@ const salesRoutes = require('./routes/salesRoutes');
 const config = require('./config');
 
 const app = express();
-app.use(express.json());
+const port = config.port;
 
+app.use(express.json());
 app.use('/api', salesRoutes);
 
 mongoose.connect(config.dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log('Connected to MongoDB');
-        app.listen(config.port, () => {
-            console.log(`Server is running on port ${config.port}`);
+        app.listen(port, () => {
+            console.log(`Sales service listening at http://localhost:${port}`);
         });
     })
-    .catch(err => console.error('Could not connect to MongoDB', err));
+    .catch(err => {
+        console.error('Failed to connect to MongoDB', err);
+    });
