@@ -1,0 +1,17 @@
+{
+    "name": "sales-service",
+    "version": "1.0.0",
+    "description": "Sales microservice for auto parts sales",
+    "main": "src/app.js",
+    "scripts": {
+      "start": "node src/app.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^5.13.3"
+    },
+    "devDependencies": {},
+    "author": "Paula Giraldo",
+    "license": "ISC"
+  }
+  
