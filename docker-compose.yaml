@@ -131,6 +131,25 @@ services:
       - mysql-data:/var/lib/mysql
       - ./ms-spare-parts/db/database.sql:/docker-entrypoint-initdb.d/init.sql
 
+  # Microservice ms_repairs
+  ms_repairs:
+    build:
+      context: ms-repairs
+      dockerfile: Dockerfile
+    ports:
+     - "3006:3006"
+    depends_on:
+      - ms_repairs_db
+
+  ms_repairs_db:
+    image: mysql:5.7
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+    volumes:
+      - mysql-data-repairs:/var/lib/mysql
+      - ./ms-repairs/db/database.sql:/docker-entrypoint-initdb.d/init.sql
 
 # Persistence
 volumes:
@@ -139,3 +158,4 @@ volumes:
   mongo-data:
   mongo-data-sales:
   mysql-data:
+  mysql-data-repairs:
