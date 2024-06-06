@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  sales-service:
+    build: .
+    container_name: sales-service
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_URI=mongodb://mongodb:27017/sales-service
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo-data:
