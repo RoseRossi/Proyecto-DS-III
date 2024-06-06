@@ -86,7 +86,7 @@ services:
       - ms_reviews_db
 
   ms_reviews_db:
-    image: mongo:4.4
+    image: mongo
     ports:
       - "27017:27017"
     volumes:
