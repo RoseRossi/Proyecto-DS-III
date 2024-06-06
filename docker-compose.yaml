@@ -111,6 +111,26 @@ services:
     volumes:
       - mongo-data-sales:/data/db
 
+  # Microservice ms_spare-parts
+  ms_spare_parts:
+    build:
+      context: ms-spare-parts
+      dockerfile: Dockerfile
+    ports:
+     - "3005:3005"
+    depends_on:
+      - ms_spare_parts_db
+
+  ms_spare_parts_db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: osiris2016
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./ms-spare-parts/db/database.sql:/docker-entrypoint-initdb.d/init.sql
+
 
 # Persistence
 volumes:
@@ -118,3 +138,4 @@ volumes:
   ms_products_db_data:
   mongo-data:
   mongo-data-sales:
+  mysql-data:

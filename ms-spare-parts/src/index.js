@@ -10,7 +10,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Métodos permitidos
   }));
 
-app.listen(3000)
+app.listen(3005)
 
 app.use(express.json())
 
