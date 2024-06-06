@@ -4,7 +4,7 @@
 # @license: GPL-3.0
 #
 
-version: '3.8'
+# version: '3.8'
 
 services:
   # Kafka Server
@@ -58,7 +58,7 @@ services:
       DB_PASSWORD: postgres
     depends_on:
       - ms_products_db
-
+    
   # Database ms_user_server
   ms_products_db:
     build:
@@ -73,7 +73,28 @@ services:
     volumes:
       - ms_products_db_data:/var/lib/postgresql/data
 
+  # Microservice ms_reviews
+  ms_reviews:
+    build:
+      context: ms-reviews/backend
+      dockerfile: Dockerfile
+    ports:
+     - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/reviewsdb
+    depends_on:
+      - ms_reviews_db
+
+  ms_reviews_db:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+
 # Persistence
 volumes:
   ms_user_db_data:
   ms_products_db_data:
+  mongo-data:
