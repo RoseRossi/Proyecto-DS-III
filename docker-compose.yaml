@@ -81,16 +81,35 @@ services:
     ports:
      - "5000:5000"
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/reviewsdb
+      - MONGODB_URI=mongodb://ms_reviews_db:27017/reviewsdb
     depends_on:
       - ms_reviews_db
 
   ms_reviews_db:
-    image: mongo
+    image: mongo:4.4
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+
+  # Microservice ms_sales
+  ms_sales:
+    build:
+      context: ms-sales
+      dockerfile: Dockerfile
+    ports:
+     - "3000:3000"
+    environment:
+      - DB_URI=mongodb://ms_sales_db:27017/sales-service
+    depends_on:
+      - ms_sales_db
+
+  ms_sales_db:
+    image: mongo:4.4
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-data-sales:/data/db
 
 
 # Persistence
@@ -98,3 +117,4 @@ volumes:
   ms_user_db_data:
   ms_products_db_data:
   mongo-data:
+  mongo-data-sales:
