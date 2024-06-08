@@ -4,7 +4,7 @@
 # @license: GPL-3.0
 #
 
-version: '3.8'
+# version: '3.8'
 
 services:
   # Kafka Server
@@ -58,7 +58,7 @@ services:
       DB_PASSWORD: postgres
     depends_on:
       - ms_products_db
-
+    
   # Database ms_user_server
   ms_products_db:
     build:
@@ -73,7 +73,89 @@ services:
     volumes:
       - ms_products_db_data:/var/lib/postgresql/data
 
+  # Microservice ms_reviews
+  ms_reviews:
+    build:
+      context: ms-reviews/backend
+      dockerfile: Dockerfile
+    ports:
+     - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://ms_reviews_db:27017/reviewsdb
+    depends_on:
+      - ms_reviews_db
+
+  ms_reviews_db:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # Microservice ms_sales
+  ms_sales:
+    build:
+      context: ms-sales
+      dockerfile: Dockerfile
+    ports:
+     - "3000:3000"
+    environment:
+      - DB_URI=mongodb://ms_sales_db:27017/sales-service
+    depends_on:
+      - ms_sales_db
+
+  ms_sales_db:
+    image: mongo:4.4
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-data-sales:/data/db
+
+  # Microservice ms_spare-parts
+  ms_spare_parts:
+    build:
+      context: ms-spare-parts
+      dockerfile: Dockerfile
+    ports:
+     - "3005:3005"
+    depends_on:
+      - ms_spare_parts_db
+
+  ms_spare_parts_db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: osiris2016
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./ms-spare-parts/db/database.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Microservice ms_repairs
+  ms_repairs:
+    build:
+      context: ms-repairs
+      dockerfile: Dockerfile
+    ports:
+     - "3006:3006"
+    depends_on:
+      - ms_repairs_db
+
+  ms_repairs_db:
+    image: mysql:5.7
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+    volumes:
+      - mysql-data-repairs:/var/lib/mysql
+      - ./ms-repairs/db/database.sql:/docker-entrypoint-initdb.d/init.sql
+
 # Persistence
 volumes:
   ms_user_db_data:
   ms_products_db_data:
+  mongo-data:
+  mongo-data-sales:
+  mysql-data:
+  mysql-data-repairs:
