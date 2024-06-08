@@ -1,10 +1,14 @@
-import {createPool} from 'mysql2/promise'
+import { createPool } from 'mysql2/promise';
+import { config } from 'dotenv';
 
-//Conexion a la base de datos
+// Cargar las variables de entorno desde el archivo .env
+config();
+
+// ConexiÃ³n a la base de datos
 export const pool = createPool({
-    host: 'ms_spare_parts_db',
-    user: 'root',
-    password: 'osiris2016',
-    port: '3306',
-    database: 'inventario'
-})
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE
+});
