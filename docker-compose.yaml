@@ -81,12 +81,12 @@ services:
     ports:
      - "5000:5000"
     environment:
-      - MONGO_URI=mongodb://ms_reviews_db:27017/reviewsdb
+      - MONGO_URI=mongodb://ms_reviews_db:27017/reviews
     depends_on:
       - ms_reviews_db
 
   ms_reviews_db:
-    image: mongo:4.4
+    image: mongo:7.0
     ports:
       - "27017:27017"
     volumes:
@@ -105,7 +105,7 @@ services:
       - ms_sales_db
 
   ms_sales_db:
-    image: mongo:4.4
+    image: mongo:7.0
     ports:
       - "27019:27017"
     volumes:

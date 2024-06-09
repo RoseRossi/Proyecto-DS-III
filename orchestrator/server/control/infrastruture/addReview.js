@@ -1,5 +1,5 @@
 const { generalExecuteInterface } = require("../domain/execute")
-const addReview = require('../application/addForReview')
+const addForReview = require('../application/addForReview')
 
 class addReview {
     constructor(props) {
@@ -7,7 +7,7 @@ class addReview {
     }
 
     async execute() {
-        const instance = new addReview({
+        const instance = new addForReview({
             req: this.req
         });
         return instance.post()

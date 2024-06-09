@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 const GetUser =  require('./infrastruture/getUser')
 const createProduct =  require('./infrastruture/createProduct')
 const updateProduct = require('./infrastruture/updateProduct')
