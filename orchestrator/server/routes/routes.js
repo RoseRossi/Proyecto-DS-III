@@ -11,7 +11,7 @@ const { getUser ,
         addReview_
 } = require('../control/controls');
 
-const router = express.Router();
+const router = Router();
 
 // Ms-products
 router.post('/get-product', getProduct);
