@@ -5,6 +5,8 @@ const listProduct = require('./infrastruture/listProduct')
 const addUser = require('./infrastruture/addUser')
 const updateUser =  require('./infrastruture/updateUser')
 const loggedUser = require('./infrastruture/loggedUser')
+const createRepair = require('./infrastruture/createRepair')
+const updateRepair = require('./infrastruture/updateRepair')
 
 
 const getUser = async (req, res) => {
@@ -37,6 +39,14 @@ const updateUser_= async (req, res) => {
 
 const loggedUser_ = async (req, res) => {
     execute_(req, res, loggedUser)
+}
+
+const createRepair_ = async(req,res) => {
+    execute_(req,res, createRepair)
+}
+
+const updateRepair_ = async(req,res) => {
+    execute_(req,res, updateRepair)
 }
 
 const execute_ = async (req, res, fun) => {
@@ -74,5 +84,7 @@ module.exports = {
     getProduct,
     addUser_,
     updateUser_,
-    loggedUser_
+    loggedUser_,
+    createRepair_,
+    updateRepair_
 }

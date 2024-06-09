@@ -6,7 +6,7 @@ import cors from "cors";
 const app = express()
 
 app.use(cors({
-    origin: 'http://localhost:3001', // Permitir solicitudes desde este origen
+    origin: 'http://localhost:4800', // Permitir solicitudes desde este origen
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Métodos permitidos
   }));
 

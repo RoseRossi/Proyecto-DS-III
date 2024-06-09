@@ -10,5 +10,9 @@
         "add": "http://localhost:4700/api/my-server-go/create",
         "put": "http://localhost:4700/api/my-server-go/update",
         "logged": "http://localhost:4700/api/my-server-go/logged"
+    },
+    "ms-repairs": {
+        "add": "http://ms_repairs:3006/api/create-repair",
+        "patch": "http://ms_repairs:3006/api/reparaciones/:id/finalizar"
     }
 }

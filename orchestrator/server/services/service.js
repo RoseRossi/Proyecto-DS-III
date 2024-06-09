@@ -6,7 +6,26 @@
 const 
     methodPut = 'PUT',
     methodPost = 'POST',
-    methodGet = 'GET';
+    methodGet = 'GET',
+    methodPatch = 'PATCH';
+
+/**
+ *  General Estruture HTTP REQUEST PATCH
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+const fetchPatchGeneral = ({
+    dataSend,
+    urlEndPoint
+}) =>
+{
+    return fetchGeneral({
+        dataSend: dataSend,
+        urlEndPoint: urlEndPoint,
+        type: methodPatch     
+    })
+}
 
 /**
  *  General Estruture HTTP REQUEST POST
@@ -89,5 +108,6 @@ fetchGeneral = async ({
 module.exports = {
     fetchPutGeneral,
     fetchGetGeneral,
-    fetchPostGeneral
+    fetchPostGeneral,
+    fetchPatchGeneral,
 }
