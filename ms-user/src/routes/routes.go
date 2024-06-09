@@ -19,6 +19,9 @@ func InitializeRoutes(router HttpRouter, allRoutes []map[string]interface{}) {
 		for _, r := range allRoutes {
 			// Data
 			router.POST(fmt.Sprintf("%s/get-data", r["route_"]), HandleSync(handler.GetData))
+			router.POST(fmt.Sprintf("%s/create", r["route_"]), HandleSync(handler.CreateUser))
+			router.POST(fmt.Sprintf("%s/update", r["route_"]), HandleSync(handler.CreateUpdate))
+			router.POST(fmt.Sprintf("%s/logged", r["route_"]), HandleSync(handler.CreateCurrent))
 		}
 	}
 }
