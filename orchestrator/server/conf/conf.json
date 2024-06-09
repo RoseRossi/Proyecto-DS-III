@@ -1,14 +1,20 @@
-{
-    "ms-product": {
-        "get": "http://localhost:4701/api/my-server-go/get-data",
-        "add": "http://localhost:4701/api/my-server-go/create",
-        "put": "http://localhost:4701/api/my-server-go/update",
-        "list": "http://localhost:4701/api/my-server-go/list"
-    },
-    "ms-user": {
-        "get": "http://localhost:4700/api/my-server-go/get-data",
-        "add": "http://localhost:4700/api/my-server-go/create",
-        "put": "http://localhost:4700/api/my-server-go/update",
-        "logged": "http://localhost:4700/api/my-server-go/logged"
+[
+    {
+        "ms-product": {
+            "get": "http://localhost:4701/api/my-server-go/get-data",
+            "add": "http://localhost:4701/api/my-server-go/create",
+            "put": "http://localhost:4701/api/my-server-go/update",
+            "list": "http://localhost:4701/api/my-server-go/list"
+        },
+        "ms-user": {
+            "get": "http://localhost:4700/api/my-server-go/get-data",
+            "add": "http://localhost:4700/api/my-server-go/create",
+            "put": "http://localhost:4700/api/my-server-go/update",
+            "logged": "http://localhost:4700/api/my-server-go/logged"
+        },
+        "ms-reviews": {
+            "get": "http://localhost:5000/get-reviews",
+            "add": "http://localhost:5000/add-review"
+        }
     }
-}
+]

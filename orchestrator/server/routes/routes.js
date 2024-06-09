@@ -6,10 +6,12 @@ const { getUser ,
         getProduct,
         addUser_,
         updateUser_,
-        loggedUser_
+        loggedUser_, 
+        getReviews_,
+        addReview_
 } = require('../control/controls');
 
-const router = Router();
+const router = express.Router();
 
 // Ms-products
 router.post('/get-product', getProduct);
@@ -22,5 +24,9 @@ router.post('/get-user', getUser);
 router.post('/add-user', addUser_);
 router.put('/update-user', updateUser_);
 router.post('/logged-user', loggedUser_);
+
+// Ms-reviews
+router.post('/get-reviews', getReviews_);
+router.post('/add-reviews', addReview_);
 
 module.exports = router;
