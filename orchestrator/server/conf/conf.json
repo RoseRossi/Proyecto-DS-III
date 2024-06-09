@@ -14,5 +14,10 @@
     "ms-reviews": {
         "get": "http://localhost:5000/get-reviews",
         "add": "http://localhost:5000/add-review"
+    },
+    "ms-spare-parts": {
+        "add": "http://ms_spare_parts:3005/api/agregar",
+        "put": "http://ms_spare_parts:3005/api/editar/:id",
+        "delete": "http://ms_spare_parts:3005/api/eliminar/:id"
     }
 }

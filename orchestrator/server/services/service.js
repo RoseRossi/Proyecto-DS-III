@@ -6,7 +6,9 @@
 const 
     methodPut = 'PUT',
     methodPost = 'POST',
-    methodGet = 'GET';
+    methodGet = 'GET',
+    methodDelete = 'DELETE';
+
 
 /**
  *  General Estruture HTTP REQUEST POST
@@ -86,8 +88,27 @@ fetchGeneral = async ({
     }
 };
 
+/**
+ * General Structure HTTP REQUEST DELETE
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+const fetchDeleteGeneral = ({
+    dataSend,
+    urlEndPoint
+}) => {
+    return fetchGeneral({
+        dataSend: dataSend,
+        urlEndPoint: urlEndPoint,
+        type: methodDelete   
+    })
+};
+
+
 module.exports = {
     fetchPutGeneral,
     fetchGetGeneral,
-    fetchPostGeneral
+    fetchPostGeneral,
+    fetchDeleteGeneral
 }

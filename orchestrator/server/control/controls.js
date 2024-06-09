@@ -8,6 +8,10 @@ const loggedUser = require('./infrastruture/loggedUser')
 const addReview = require('./infrastruture/addReview')
 const getReviews = require('./infrastruture/getReviews')
 
+const addSpare = require('./infrastruture/addSpare')
+const updateSpare = require('./infrastruture/updateSpare')
+const deleteSpare = require('./infrastruture/deleteSpare')
+
 const getUser = async (req, res) => {
     execute_(req, res, GetUser)
 }
@@ -49,6 +53,21 @@ const getReviews_ = async (req, res) => {
     execute_(req, res, getReviews)
 };
 
+const addSpare_ = async (req, res) => {
+    execute_(req, res, addSpare)
+};
+
+const updateSpare_ = async (req, res) => {
+    execute_(req, res, updateSpare)
+};
+
+const deleteSpare_ = async (req, res) => {
+    execute_(req, res, deleteSpare)
+};
+
+
+
+
 const execute_ = async (req, res, fun) => {
     let state = false,
     code = 400,
@@ -87,4 +106,7 @@ module.exports = {
     loggedUser_,
     addReview_,
     getReviews_,
+    addSpare_, 
+    updateSpare_,
+    deleteSpare_
 }
