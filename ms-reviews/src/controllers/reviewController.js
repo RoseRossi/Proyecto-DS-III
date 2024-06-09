@@ -1,6 +1,6 @@
 const Review = require('../models/Review');
 
-exports.createReview = async (req, res) => {
+exports.addReview = async (req, res) => {
   try {
     const review = new Review(req.body);
     await review.save();

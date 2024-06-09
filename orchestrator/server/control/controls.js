@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const GetUser =  require('./infrastruture/getUser')
 const createProduct =  require('./infrastruture/createProduct')
 const updateProduct = require('./infrastruture/updateProduct')
@@ -5,7 +7,8 @@ const listProduct = require('./infrastruture/listProduct')
 const addUser = require('./infrastruture/addUser')
 const updateUser =  require('./infrastruture/updateUser')
 const loggedUser = require('./infrastruture/loggedUser')
-
+const addReview = require('./infrastruture/addReview')
+const getReviews = require('./infrastruture/getReviews')
 
 const getUser = async (req, res) => {
     execute_(req, res, GetUser)
@@ -38,6 +41,15 @@ const updateUser_= async (req, res) => {
 const loggedUser_ = async (req, res) => {
     execute_(req, res, loggedUser)
 }
+
+//Ms-Reviews
+const addReview_ = async (req, res) => {
+    execute_(req, res, addReview)
+};
+
+const getReviews_ = async (req, res) => {
+    execute_(req, res, getReviews)
+};
 
 const execute_ = async (req, res, fun) => {
     let state = false,
@@ -74,5 +86,7 @@ module.exports = {
     getProduct,
     addUser_,
     updateUser_,
-    loggedUser_
+    loggedUser_,
+    addReview_,
+    getReviews_,
 }

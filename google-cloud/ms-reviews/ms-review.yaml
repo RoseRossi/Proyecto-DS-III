@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: ms-reviews-container
-    image: #Falta agregar imagen en la razi del proyecto hay ejemplo de como hacerlo
+    image: isabela22/ms_reviews_server
     ports:
     - containerPort: 5000
     env:

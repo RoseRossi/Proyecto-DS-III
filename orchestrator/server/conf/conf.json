@@ -10,5 +10,9 @@
         "add": "http://localhost:4700/api/my-server-go/create",
         "put": "http://localhost:4700/api/my-server-go/update",
         "logged": "http://localhost:4700/api/my-server-go/logged"
+    },
+    "ms-reviews": {
+        "get": "http://localhost:5000/get-reviews",
+        "add": "http://localhost:5000/add-review"
     }
 }
