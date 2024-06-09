@@ -5,5 +5,5 @@ FROM account AS t1
 INNER JOIN info_personal AS t2 ON t1.id = t2.id_account
 INNER JOIN account_roles AS t3 ON t3.id = t2.id_rol
 WHERE t1.email = $1
-ORDER BY id DESC 
+ORDER BY t1.id DESC 
 LIMIT 1

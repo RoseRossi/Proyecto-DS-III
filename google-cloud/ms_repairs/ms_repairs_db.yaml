@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ms-repairs-db-pod
+spec:
+  containers:
+  - name: ms-repairs-db-container
+    image: mysql:5.7
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "test"
+    volumeMounts:
+    - name: mysql-data-repairs
+      mountPath: /var/lib/mysql
+    - name: init-sql
+      mountPath: /docker-entrypoint-initdb.d
+volumes:
+- name: mysql-data-repairs
+  persistentVolumeClaim:
+    claimName: mysql-data-repairs
+- name: init-sql
+  hostPath:
+    path: ./ms-repairs/db/init.sql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-repairs-db-service
+spec:
+  selector:
+    app: ms-repairs-db
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306

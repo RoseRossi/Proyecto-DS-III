@@ -1,3 +1,5 @@
-export const generalUpdateInterface = {
+const generalUpdateInterface = {
     update() {}
 }
+
+module.exports = generalUpdateInterface

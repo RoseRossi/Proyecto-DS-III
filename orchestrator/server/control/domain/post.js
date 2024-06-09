@@ -1,4 +1,6 @@
 
-export const generalPostInterface = {
+const generalPostInterface = {
     post() {}
 }
+
+module.exports = generalPostInterface

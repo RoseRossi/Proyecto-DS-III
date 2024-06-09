@@ -76,17 +76,17 @@ services:
   # Microservice ms_reviews
   ms_reviews:
     build:
-      context: ms-reviews/backend
+      context: ms-reviews
       dockerfile: Dockerfile
     ports:
      - "5000:5000"
     environment:
-      - MONGODB_URI=mongodb://ms_reviews_db:27017/reviewsdb
+      - MONGO_URI=mongodb://ms_reviews_db:27017/reviews
     depends_on:
       - ms_reviews_db
 
   ms_reviews_db:
-    image: mongo:4.4
+    image: mongo:7.0
     ports:
       - "27017:27017"
     volumes:
@@ -105,7 +105,7 @@ services:
       - ms_sales_db
 
   ms_sales_db:
-    image: mongo:4.4
+    image: mongo:7.0
     ports:
       - "27019:27017"
     volumes:
@@ -118,6 +118,12 @@ services:
       dockerfile: Dockerfile
     ports:
      - "3005:3005"
+    environment:
+      DB_HOST: ms_spare_parts_db
+      DB_USER: root
+      DB_PASSWORD: osiris2016
+      DB_PORT: 3306
+      DB_DATABASE: inventario
     depends_on:
       - ms_spare_parts_db
 
@@ -138,6 +144,12 @@ services:
       dockerfile: Dockerfile
     ports:
      - "3006:3006"
+    environment:
+      DB_HOST: ms_repairs_db
+      DB_USER: root
+      DB_PASSWORD: test
+      DB_PORT: 3306
+      DB_DATABASE: msrepairs
     depends_on:
       - ms_repairs_db
 
@@ -150,6 +162,13 @@ services:
     volumes:
       - mysql-data-repairs:/var/lib/mysql
       - ./ms-repairs/db/database.sql:/docker-entrypoint-initdb.d/init.sql
+
+  orchestrator:
+    build:
+      context: orchestrator
+      dockerfile: Dockerfile
+    ports:
+      - "4800:4800"
 
 # Persistence
 volumes:

@@ -77,6 +77,26 @@ func ConvertDataToArrayInterface(p map[string]interface{}) []*interface{} {
 	return response;
 }
 
+
+/**
+  * Conver data of request to []interface{} 
+  * Todo: Add Validation later
+*/
+func ConvertDataToArrayInterface_(p map[string]interface{}) []interface{} {
+	var response []interface{}
+	expectedKeys, ok := p["expectedKeys"].([]string)
+
+	if ok && CheckExpectedKeys(p,expectedKeys) {
+	   for _, key := range expectedKeys {
+		 if value, ok := p[key]; ok {
+		 	response = append(response, &value)
+		 } 
+	   }
+	}
+	
+	return response;
+}
+
 // Check keys of map
 func CheckExpectedKeys(m map[string]interface{}, expectedKeys []string) bool {
 	haveAllKeys := true;

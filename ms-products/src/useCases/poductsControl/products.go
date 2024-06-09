@@ -25,10 +25,32 @@ type UseCasesProducts struct{}
 /**
    Return body of request
 */
-func (p UseCasesProducts) BodyListData(c *gin.Context) {
+func (p UseCasesProducts) BodyCreateData(c *gin.Context) {
 	requestParamns := utils.StateDefaultReq()
 	instanceBody.BodyRequest = c
 	bodyData := httpControl.GetBodyRequest(instanceBody)
 	productsDomain.DomCreateProducts(instanceDom,&requestParamns,&bodyData)
+	utils.ResponseControlGeneral(c, requestParamns)
+}
+
+/**
+   Return body of request
+*/
+func (p UseCasesProducts) BodyUpdateData(c *gin.Context) {
+	requestParamns := utils.StateDefaultReq()
+	instanceBody.BodyRequest = c
+	bodyData := httpControl.GetBodyRequest(instanceBody)
+	productsDomain.DomUpdateProducts(instanceDom,&requestParamns,&bodyData)
+	utils.ResponseControlGeneral(c, requestParamns)
+}
+
+/**
+   Return List Products
+*/
+func (p UseCasesProducts) BodyListData(c *gin.Context) {
+	requestParamns := utils.StateDefaultReq()
+	instanceBody.BodyRequest = c
+	bodyData := httpControl.GetBodyRequest(instanceBody)
+	productsDomain.DomListProducts(instanceDom,&requestParamns,&bodyData)
 	utils.ResponseControlGeneral(c, requestParamns)
 }

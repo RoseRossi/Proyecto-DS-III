@@ -15,6 +15,7 @@ import (
     "encoding/base64"
 	"encoding/json"
     "io"
+	_ "fmt"
 )
 
 var (
