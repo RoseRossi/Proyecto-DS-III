@@ -31,6 +31,20 @@ func GetData(c *gin.Context) {
 /**
  * Return List products
 */
+func CreatedProducts(c *gin.Context) {
+	poductsControl.BodyCreateData(instanceProduct, c)
+}
+
+/**
+ * Return List products
+*/
+func UpdateProducts(c *gin.Context) {
+	poductsControl.BodyUpdateData(instanceProduct, c)
+}
+
+/**
+ * Return List products
+*/
 func ListProducts(c *gin.Context) {
 	poductsControl.BodyListData(instanceProduct, c)
 }

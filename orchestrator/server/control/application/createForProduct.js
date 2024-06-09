@@ -1,0 +1,20 @@
+const { generalPostInterface } = require("../domain/post");
+const { fetchPostGeneral } =  require('../../services/service');
+const config = require('../../conf/conf.json')
+
+class createForProduct {
+    constructor(props) {
+        this.req = props.req
+    }
+
+    post() {
+        return fetchPostGeneral({
+            dataSend: this.req.body,
+            urlEndPoint: config["ms-product"].add
+        });
+    }
+}
+
+Object.assign(createForProduct.prototype, generalPostInterface);
+
+module.exports = createForProduct
