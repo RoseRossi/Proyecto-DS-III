@@ -4,13 +4,17 @@
     "description": "Sales microservice for auto parts sales",
     "main": "src/app.js",
     "scripts": {
-      "start": "node src/app.js"
+      "start": "node src/app.js",
+      "test": "jest"
     },
     "dependencies": {
       "express": "^4.17.1",
       "mongoose": "^5.13.3"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "jest": "^29.7.0",
+        "supertest": "^7.0.0"
+    },
     "author": "Paula Giraldo",
     "license": "ISC"
   }
