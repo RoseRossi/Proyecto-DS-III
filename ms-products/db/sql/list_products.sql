@@ -11,7 +11,7 @@ SELECT
     created_at
 FROM produtcs
 WHERE
-in_stock > 0 AND
+in_stock is TRUE AND
 created_at > $1 AND
-id_company = $2 AND
+id_company = $2
 ORDER BY id DESC LIMIT $3

@@ -58,10 +58,9 @@ func GetDataExec(_query string, args ...interface{}) (map[string]interface{} , e
 	response := map[string]interface{}{
 		"status": false,
 	}
-	
 	//Execute Query
 	result, is_error := query.Exec(insQuery, _query , args...)
-
+	
 	// If error
 	if is_error == nil {
 		response["status"] = true
@@ -150,7 +149,6 @@ func ExecuteFileSqlExec(fileSql string , args ...interface{}) (map[string]interf
     if is_error == nil {
 		route := filepath.Join(dir, "db", "sql", fmt.Sprintf("%s.sql", fileSql))
 		query_, is_error = ioutil.ReadFile(route)
-
 		if is_error == nil {
 			mapArray, is_error = GetDataExec(string(query_),args...)
 		}
