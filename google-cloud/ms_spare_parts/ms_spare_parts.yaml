@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ms-spare-parts-pod
+spec:
+  containers:
+  - name: ms-spare-parts-container
+    image: #Falta agregar imagen en la razi del proyecto hay ejemplo de como hacerlo
+    ports:
+    - containerPort: 3005
+    env:
+    - name: DB_HOST
+      value: "ms_spare_parts_db"
+    - name: DB_USER
+      value: "root"
+    - name: DB_PASSWORD
+      value: "osiris2016"
+    - name: DB_PORT
+      value: "3306"
+    - name: DB_DATABASE
+      value: "inventario"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-spare-parts-service
+spec:
+  selector:
+    app: ms-spare-parts
+  ports:
+  - protocol: TCP
+    port: 3005
+    targetPort: 3005
