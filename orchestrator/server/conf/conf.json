@@ -12,7 +12,7 @@
         "logged": "http://localhost:4700/api/my-server-go/logged"
     },
     "ms-reviews": {
-        "get": "http://ms-reviews:5000/api/get-reviews",
-        "add": "http://ms-reviews:5000/api/add-reviews"
+        "get": "http://ms_reviews:5000/get-reviews",
+        "add": "http://ms_reviews:5000/add-reviews"
     }
 }

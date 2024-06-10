@@ -66,23 +66,27 @@ const fetchGetGeneral = ({
  * @param {*} param0 
  * @returns 
  */
-fetchGeneral = async ({
-    dataSend,
-    urlEndPoint,
-    type
-}) => {
+const fetchGeneral = async ({ dataSend, urlEndPoint, type }) => {
     try {
         const response = await fetch(urlEndPoint, {
             method: type,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(dataSend),
+            body: type !== methodGet ? JSON.stringify(dataSend) : null, 
         });
 
-        return await response.json();
+        // Verificar el tipo de contenido de la respuesta
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            return await response.json();
+        } else {
+            const errorText = await response.text();
+            throw new Error(`Expected JSON but received: ${errorText}`);
+        }
     } catch (error) {
-        console.log(error);
+        console.error('Error fetching data:', error.message);
+        throw error; 
     }
 };
 
