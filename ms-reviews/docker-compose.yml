@@ -7,6 +7,6 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/reviews
   mongo:
-    image: mongo:4.2
+    image: mongo:4.1
     ports:
       - "27017:27017"

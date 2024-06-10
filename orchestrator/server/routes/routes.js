@@ -26,7 +26,7 @@ router.put('/update-user', updateUser_);
 router.post('/logged-user', loggedUser_);
 
 // Ms-reviews
-router.post('/get-reviews', getReviews_);
+router.get('/get-reviews', getReviews_);
 router.post('/add-reviews', addReview_);
 
 module.exports = router;

@@ -21,7 +21,7 @@ const reviewSchema = new mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewSchema);
 
-app.post('/add-review', async (req, res) => {
+app.post('/add-reviews', async (req, res) => {
   const review = new Review(req.body);
   await review.save();
   res.send(review);
