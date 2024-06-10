@@ -49,12 +49,15 @@ func Connect(wg *sync.WaitGroup) {
 			)
 
 			for i := 1; i <= maxAttempts; i++ {
+				fmt.Println(host, port, user, password, dbname)
+				fmt.Println("Failed to load .env file, using environment variables")
 				db, err = sql.Open("postgres", connStr)
 				if err == nil {
 					err = db.Ping()
 					if err == nil {
 						break
 					}
+					fmt.Println(err)
 				}
 				time.Sleep(3000 * time.Millisecond)
 			}

@@ -10,6 +10,6 @@ COPY . .
 
 RUN go build -o server ./src/main.go
 
-EXPOSE 4700
+EXPOSE 4701
 
 CMD ["./server"]

@@ -8,6 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 4800
+EXPOSE 80
 
 CMD ["node", "server/src/index.js"]

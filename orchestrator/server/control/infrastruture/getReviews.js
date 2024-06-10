@@ -10,7 +10,7 @@ class getReviews {
         const instance = new getForReviews({
             req: this.req
         });
-        return instance.post()
+        return instance.get()
     }
 }
 

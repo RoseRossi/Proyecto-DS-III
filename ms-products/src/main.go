@@ -43,7 +43,7 @@ func _initServer() {
 		apiGroup := router.Group("/api")
 		// Init all routes
 		routes.InitializeRoutes(apiGroup, generateRoutes)
-		router.Run(":4700")
+		router.Run(":4701")
 	}
 }
 

@@ -9,7 +9,7 @@ const
     { PORT } = process.env;
 
 // Ports
-app.set('port', PORT || 4800);
+app.set('port', PORT || 80);
 
 
 app.use(express.json());
