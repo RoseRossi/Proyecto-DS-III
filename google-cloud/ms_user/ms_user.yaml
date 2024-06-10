@@ -1,0 +1,40 @@
+#
+# @autor: Cristian Machado <cristian.machado@correounivalle.edu.co>
+# @copyrigth: 2024
+# @license: GPL-3.0
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-user-deploy
+  labels:
+    app: ms-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-user
+  template:
+    metadata:
+      labels:
+        app: ms-user
+    spec:
+      containers:
+        # Ms user Server
+        - name: ms-user-server
+          image: cristiank/ms-user:1.1
+          ports:
+            - containerPort: 4700
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+spec:
+  selector:
+    app: ms-user
+  ports:
+      - protocol: TCP
+        port: 4700
+        targetPort: 4700
+  type: ClusterIP

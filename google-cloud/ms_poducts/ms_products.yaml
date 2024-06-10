@@ -1,0 +1,40 @@
+#
+# @autor: Cristian Machado <cristian.machado@correounivalle.edu.co>
+# @copyrigth: 2024
+# @license: GPL-3.0
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-products-deploy
+  labels:
+    app:  ms-products
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  ms-products
+  template:
+    metadata:
+      labels:
+        app:  ms-products
+    spec:
+      containers:
+        # Ms Products Server
+        - name: ms-products-server
+          image: cristiank/ms-products:1.6
+          ports:
+            - containerPort: 4701
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-service
+spec:
+  selector:
+    app: ms-products
+  ports:
+      - protocol: TCP
+        port: 4701
+        targetPort: 4701
+  type: ClusterIP

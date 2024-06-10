@@ -1,0 +1,45 @@
+#
+# @autor: Cristian Machado <cristian.machado@correounivalle.edu.co>
+# @copyrigth: 2024
+# @license: GPL-3.0
+#
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ms-user-pod
+  labels:
+    app: bd-user
+spec:
+  containers:
+    - name: ms-user-db
+      image: postgres:15.5
+      ports:
+        - containerPort: 5432
+      env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+      volumeMounts:
+        - name: ms-user-vm
+          mountPath: /docker-entrypoint-initdb.d
+  volumes:
+    - name: ms-user-vm
+      persistentVolumeClaim:
+        claimName: user-db-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-user-service
+spec:
+  selector:
+    app: bd-user
+  ports:
+    - protocol: TCP
+      port: 5433
+      targetPort: 5432
+  type: ClusterIP
